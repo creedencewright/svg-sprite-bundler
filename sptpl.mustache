@@ -1,0 +1,26 @@
+// @name: x y w h
+{{#shapes}}
+@{{name}}: {{position.relative.xy}} {{width.outer}}px {{height.outer}}px;
+{{/shapes}}
+
+.svg-sprite(@sprite) {
+    .sprite-image();
+    .sprite-position(@sprite);
+    .sprite-size(@sprite);
+}
+
+.sprite-size(@sprite) {
+    width: extract(@sprite, 3);
+    height: extract(@sprite, 4);
+}
+
+.sprite-image() {
+    background-image: url("{{{sprite}}}");
+    background-repeat: no-repeat;
+}
+
+.sprite-position(@sprite) {
+    @sprite-offset-x: extract(@sprite, 1);
+    @sprite-offset-y: extract(@sprite, 2);
+    background-position: @sprite-offset-x @sprite-offset-y;
+}
